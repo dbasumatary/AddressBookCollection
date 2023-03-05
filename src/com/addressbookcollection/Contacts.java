@@ -2,10 +2,10 @@ package com.addressbookcollection;
 
 /*Creating contacts and storing the values*/
 public class Contacts {
-    public String firstName, lastName, address, email, city, state;       //instance variables created
-    public long zipCode, phoneNumber;
+    //instance variables created
+    public String firstName, lastName, address, email, city, state, zipCode, phoneNumber;
     /*Creating a constructor */
-    public Contacts(String firstName, String lastName, String address,String city,String state, long zipCode,long phoneNumber,String email)
+    public Contacts(String firstName, String lastName, String address,String city,String state, String zipCode,String phoneNumber,String email)
     {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -16,7 +16,7 @@ public class Contacts {
         this.city = city;
         this.state = state;
     }
-    public String getFirstName()                                  //Using getter to obtain the properties
+    public String getFirstName()
     {
         return firstName;
     }
@@ -36,11 +36,11 @@ public class Contacts {
     {
         return state;
     }
-    public long getZip()
+    public String getZip()
     {
         return zipCode;
     }
-    public long getPhoneNumber()
+    public String getPhoneNumber()
     {
         return phoneNumber;
     }
@@ -48,7 +48,7 @@ public class Contacts {
     {
         return email;
     }
-    public void setFirstName(String firstName)                     //Using setter to set the values
+    public void setFirstName(String firstName)
     {
         this.firstName = firstName;
     }
@@ -60,11 +60,11 @@ public class Contacts {
     {
         this.address = address;
     }
-    public void setZipCode(long zipCode)
+    public void setZipCode(String zipCode)
     {
         this.zipCode = zipCode;
     }
-    public void setPhoneNumber(long phoneNumber)
+    public void setPhoneNumber(String phoneNumber)
     {
         this.phoneNumber = phoneNumber;
     }

@@ -1,20 +1,18 @@
 package com.addressbookcollection;
+
 import java.util.Scanner;
 import java.util.Iterator;
 import java.util.*;
-
 public class AddressBookLogic{
     Scanner scannerObject = new Scanner(System.in);
-
-    //Creating an arraylist to store the contacts
-    List<Contacts> addressList = new ArrayList<>();
+    List<Contacts> addressList = new ArrayList<>();                     //Creating an arraylist to store the values
     String firstName,lastName,address,city, state,email, zipCode, phoneNumber;
-    public void operation() {                            //Method to input the operation the user wants to perform
+    public void operation() {                                    //Method to input the operation the user wants to perform
         boolean flag = true;
-        do{                                             //Using a do-while loop
+        do{                                                  //Using a do-while loop
             System.out.println("\nChoose the following operation you want to perform");
             Scanner scannerObject = new Scanner(System.in);
-            System.out.println("1. Add new entry\n2. Edit existing entry\n3. Exit");
+            System.out.println("1. Add new entry\n2. Edit entry\n3. Delete entry\n4. Exit");
             switch (scannerObject.nextInt()) {
                 case 1:
                     addContacts();
@@ -23,12 +21,15 @@ public class AddressBookLogic{
                     editContacts();
                     break;
                 case 3:
+                    deleteContacts();
+                    break;
+                case 4:
                     flag = false;
                     System.out.println("Thank You !");
             }
         }while(flag);
     }
-    public void addContacts() {                           //Method to add new contact details
+    public void addContacts() {                                         //Method to add new contact details
         System.out.println("Enter first name: ");
         Scanner scanner = new Scanner(System.in);
         firstName = scanner.next();
@@ -54,7 +55,7 @@ public class AddressBookLogic{
         System.out.println("Enter the first name:");
         String firstName = scannerObject.next();
         Iterator<Contacts> iterator = addressList.listIterator();     //Access and returns a list iterator over the elements
-        while(iterator.hasNext()) {                                  //returns true if it has another token in its input
+        while(iterator.hasNext()) {                                  //Returns true if it has another token in its input
             Contacts person = iterator.next();
             if(firstName.equals(person.getFirstName()) ) {         //Checking if user input name equals the name stored
                 System.out.println("\nChoose the following you want to change:");
@@ -104,6 +105,22 @@ public class AddressBookLogic{
                         break;
                 }
             } else {
+                System.out.println("Provided name doesn't exist");
+                System.out.println("Please enter the correct first name");
+            }
+        }
+    }
+    public  void deleteContacts(){                                                //Method to delete contact details
+        System.out.println("Enter the first name to be deleted");
+        String firstName = scannerObject.next();
+        Iterator<Contacts> iterator = addressList.listIterator();             //Access and returns a list iterator over the elements
+        while(iterator.hasNext()) {                                           //Returns true if it has another token in its input
+            Contacts person = iterator.next();                            //Call the object
+            if(firstName.equals(person.getFirstName())) {                 //Checking if user input name equals the name stored
+                addressList.remove(person);
+                System.out.println("The contact detail has been deleted");
+                return;
+            }else {
                 System.out.println("Provided name doesn't exist");
                 System.out.println("Please enter the correct first name");
             }

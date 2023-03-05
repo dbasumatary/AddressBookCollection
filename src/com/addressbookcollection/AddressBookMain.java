@@ -7,4 +7,3 @@ public class AddressBookMain {
         addressBookLogic.operation();
     }
 }
-

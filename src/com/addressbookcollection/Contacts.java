@@ -86,3 +86,4 @@ public class Contacts {
                 + ", City - " + city + ", State - " + state + ", Email - " + email + ", Zip Code - " + zipCode + ", Phone Number - " + phoneNumber + "]";
     }
 }
+

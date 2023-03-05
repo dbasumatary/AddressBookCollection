@@ -1,12 +1,13 @@
 package com.addressbookcollection;
-
 import java.util.Scanner;
 import java.util.*;
+
 /*Writing the logic for the address book system*/
 public class AddressBookLogic{
     Scanner scannerObject = new Scanner(System.in);
     public static ArrayList<Contacts> addressList = new ArrayList<>();                     //Creating an arraylist to store the values
     String firstName,lastName,address,city, state,email, zipCode, phoneNumber;             //All inputs are treated as string
+
     public void operation() {                                                //Method to input the operation the user wants to perform
         boolean flag = true;
         do{                                                              //Using a do-while loop
@@ -56,10 +57,26 @@ public class AddressBookLogic{
     }
     public void addContacts() {                             // Method to create an object of Contact class with user input
         System.out.print("Please enter how many contacts you want to add: ");
-        int n = scannerObject.nextInt();
-        for (int i = 0; i < n; i++) {
-            addressList.add(inputDetails());           //Adding the method inputDetails to the address list
-            System.out.println();
+        int input = scannerObject.nextInt();
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter your first name: ");
+        String firstname = scanner.nextLine();
+
+        //Optional is used to represent a value that may or may not be present.
+        //It is generally used as a return type for methods that might not always have a result to return
+        //It helps to reduce the number of null pointer exceptions
+        Optional<Contacts> checkName = addressList
+                .stream()                                                     //sequencing of data from source
+                .filter(name -> firstname.equals(name.getFirstName()))        //executes an intermediate operation
+                .findFirst();                                                 //This method finds the first element in a Stream.
+
+        //isPresent() method to check if it contains a non-null value.
+        if(checkName.isPresent()){
+            System.out.println("The name already exists");
+            System.out.println("Please input another name");
+        }
+        else {
+            Contacts contacts = inputDetails();
         }
     }
     public void displayContacts() {                        // Display all the contacts in the address book arraylist

@@ -96,3 +96,4 @@ public class AddressBookRegister{
         addBook.deleteContacts();
     }
 }
+

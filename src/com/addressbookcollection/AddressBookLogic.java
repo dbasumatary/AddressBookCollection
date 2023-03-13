@@ -20,7 +20,7 @@ public class AddressBookLogic{
             System.out.println("\nChoose the following operation you want to perform");
             Scanner scannerObject = new Scanner(System.in);
             System.out.println("1. Add new entry\n2. Display Contacts\n3. Edit entry\n4. Delete entry\n5. Count people by City" +
-                               "\n6. Count people by State\n7. Exit");
+                               "\n6. Count people by State\n7. Sort Person by name\n8. Exit");
             switch (scannerObject.nextInt()) {
                 case 1:
                     addContacts();
@@ -41,6 +41,9 @@ public class AddressBookLogic{
                     countByState();
                     break;
                 case 7:
+                    sortPersonByName();
+                    break;
+                case 8:
                     flag = false;
                     System.out.println("Thank You !");
             }
@@ -145,6 +148,14 @@ public class AddressBookLogic{
                 .filter(state -> inputState.equals(state.getState()))
                 .count();
         System.out.println("Total number of persons count as per state "+ inputState + " are: " + count);
+    }
+
+    //Method to sort person details as per name
+    public void sortPersonByName(){
+        System.out.println("After sorting, the list of names are : \n");
+        addressList.stream()
+                .sorted(Comparator.comparing(Contacts::getFirstName))
+                .forEach(System.out::println);
     }
 
     public static void main(String[] args) {

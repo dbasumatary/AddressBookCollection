@@ -155,4 +155,3 @@ public class AddressBookRegister{
         System.out.println("Total number of persons count as per state "+ inputState + " are: "+ count);
     }
 }
-

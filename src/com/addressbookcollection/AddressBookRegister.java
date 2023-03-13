@@ -17,8 +17,8 @@ public class AddressBookRegister{
         do{                                                                 //Using a do-while loop
             System.out.println("\nChoose the following operation you want to perform");
             Scanner scannerObject = new Scanner(System.in);
-            System.out.println("1. Add new entry\n2. Display Contacts\n3. Edit entry\n4. Delete entry \n5." +
-                               " Add Address Book\n6. Search by City\n7. Search by State\n8. Exit");
+            System.out.println("1. Add new entry\n2. Display Contacts\n3. Edit entry\n4. Delete entry \n5. Add Address Book" +
+                               "\n6. Search by City\n7. Search by State \n8. Count people by City \n9. Count people by State \n10. Exit");
             switch (scannerObject.nextInt()) {
                 case 1:                                         // Add new contacts to the particular address book
                     addContacts();
@@ -42,6 +42,12 @@ public class AddressBookRegister{
                     searchByState();                           // Search for people by state
                     break;
                 case 8:
+                    countByCity();                           // Count number of people by state
+                    break;
+                case 9:
+                    countByState();                           // Count number of people by state
+                    break;
+                case 10:
                     flag = false;                               //Exit from the program
                     System.out.println("Thank You !");
                 default:
@@ -127,6 +133,26 @@ public class AddressBookRegister{
             return;
         }
         addBook.deleteContacts();
+    }
+
+    //Count number of people by city
+    public void countByCity(){
+        System.out.print("Enter the name of city : ");
+        String inputCity = scannerObject.next();
+        long count = addressRegister.get(addLogic).addressList.stream()
+                .filter(city -> inputCity.equals(city.getCity()))
+                .count();
+        System.out.println("Total number of persons count as per city "+ inputCity + " are: " + count);
+    }
+
+    //Count number of people by state
+    public void countByState(){
+        System.out.print("Enter the name of state : ");
+        String inputState = scannerObject.next();
+        long count = addressRegister.get(addLogic).addressList.stream()
+                .filter(state -> inputState.equals(state.getState()))
+                .count();
+        System.out.println("Total number of persons count as per state "+ inputState + " are: "+ count);
     }
 }
 

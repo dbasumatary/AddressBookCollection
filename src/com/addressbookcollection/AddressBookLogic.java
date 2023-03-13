@@ -19,7 +19,8 @@ public class AddressBookLogic{
         do{                                                              //Using a do-while loop
             System.out.println("\nChoose the following operation you want to perform");
             Scanner scannerObject = new Scanner(System.in);
-            System.out.println("1. Add new entry\n2. Display Contacts\n3. Edit entry\n4. Delete entry\n5. Exit");
+            System.out.println("1. Add new entry\n2. Display Contacts\n3. Edit entry\n4. Delete entry\n5. Count people by City" +
+                               "\n6. Count people by State\n7. Exit");
             switch (scannerObject.nextInt()) {
                 case 1:
                     addContacts();
@@ -34,6 +35,12 @@ public class AddressBookLogic{
                     deleteContacts();
                     break;
                 case 5:
+                    countByCity();
+                    break;
+                case 6:
+                    countByState();
+                    break;
+                case 7:
                     flag = false;
                     System.out.println("Thank You !");
             }
@@ -118,6 +125,31 @@ public class AddressBookLogic{
         }
         addressList.remove(index);
         System.out.println(" Contact deleted!");
+    }
+
+    //Count number of people by city
+    public void countByCity(){
+        System.out.println("Enter the name of city : ");
+        String inputCity = scannerObject.next();
+        long count = addressList.stream()
+                .filter(city -> inputCity.equals(city.getCity()))
+                .count();
+        System.out.println("Total number of persons count as per city "+ inputCity + " are: " + count);
+    }
+
+    //Count number of people by state
+    public void countByState(){
+        System.out.println("Enter the name of state : ");
+        String inputState = scannerObject.next();
+        long count = addressList.stream()
+                .filter(state -> inputState.equals(state.getState()))
+                .count();
+        System.out.println("Total number of persons count as per state "+ inputState + " are: " + count);
+    }
+
+    public static void main(String[] args) {
+        AddressBookLogic addressBookLogic = new AddressBookLogic();
+        addressBookLogic.operation();
     }
 }
 

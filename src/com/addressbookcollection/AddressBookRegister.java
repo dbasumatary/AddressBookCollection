@@ -1,17 +1,24 @@
 package com.addressbookcollection;
 import java.util.Scanner;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /*Writing the logic for multiple address book system*/
 public class AddressBookRegister{
     Scanner scannerObject = new Scanner(System.in);
+    private List<Contacts> addressBooks;
+    AddressBookLogic addLogic = new AddressBookLogic();
+    public AddressBookRegister() {
+        this.addressBooks = new ArrayList<>();
+    }
     HashMap<String, AddressBookLogic> addressRegister = new HashMap<>();        //Hashmap of the address book
     public void operation() {                                               //Method to input the operation the user wants to perform
         boolean flag = true;
         do{                                                                 //Using a do-while loop
             System.out.println("\nChoose the following operation you want to perform");
             Scanner scannerObject = new Scanner(System.in);
-            System.out.println("1. Add new entry\n2. Display Contacts\n3. Edit entry\n4. Delete entry\n5. Add Address Book\n6. Exit");
+            System.out.println("1. Add new entry\n2. Display Contacts\n3. Edit entry\n4. Delete entry \n5." +
+                               " Add Address Book\n6. Search by City\n7. Search by State\n8. Exit");
             switch (scannerObject.nextInt()) {
                 case 1:                                         // Add new contacts to the particular address book
                     addContacts();
@@ -26,9 +33,15 @@ public class AddressBookRegister{
                     deleteContacts();                         // Delete a contact from the address book
                     break;
                 case 5:
-                    addAddressBook();                           // Add a new address book to the array list
+                    addAddressBook();                          // Add a new address book to the array list
                     break;
                 case 6:
+                    searchByCity();                           // Search for people by city
+                    break;
+                case 7:
+                    searchByState();                           // Search for people by state
+                    break;
+                case 8:
                     flag = false;                               //Exit from the program
                     System.out.println("Thank You !");
                 default:
@@ -65,6 +78,25 @@ public class AddressBookRegister{
         }
         addBook.addContacts();
     }
+
+    //method to search person across address books
+    public void searchByCity(){
+        System.out.print("Enter the name of city where the person resides: ");
+        String inputCity= scannerObject.next();
+        addressRegister.get(addLogic).addressList.stream()
+                .filter(search -> inputCity.equals(search.getCity()))
+                .forEach(element -> System.out.println(element));
+    }
+
+    public void searchByState(){
+        System.out.print("Enter the name of state where the person resides: ");
+        String inputState= scannerObject.next();
+        addressRegister.get(addLogic).addressList.stream()
+                .filter(search -> inputState.equals(search.getState()))
+                .forEach(element -> System.out.println(element));
+    }
+
+
     public void displayContacts() {                        // Calling the displayContacts method from the AddressBookLogic class
         System.out.print("Please enter the name of address book to display: ");
         String string = scannerObject.next();

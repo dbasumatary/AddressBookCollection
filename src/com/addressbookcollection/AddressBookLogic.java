@@ -5,8 +5,14 @@ import java.util.*;
 /*Writing the logic for the address book system*/
 public class AddressBookLogic{
     Scanner scannerObject = new Scanner(System.in);
+    Map<String, Contacts> contactList = new HashMap<String,Contacts>();
+
     public static ArrayList<Contacts> addressList = new ArrayList<>();                     //Creating an arraylist to store the values
+    public ArrayList<Contacts> getContact() {
+        return new ArrayList<Contacts>(contactList.values());
+    }
     String firstName,lastName,address,city, state,email, zipCode, phoneNumber;             //All inputs are treated as string
+
 
     public void operation() {                                                //Method to input the operation the user wants to perform
         boolean flag = true;

@@ -20,7 +20,7 @@ public class AddressBookLogic{
             System.out.println("\nChoose the following operation you want to perform");
             Scanner scannerObject = new Scanner(System.in);
             System.out.println("1. Add new entry\n2. Display Contacts\n3. Edit entry\n4. Delete entry\n5. Count people by City" +
-                               "\n6. Count people by State\n7. Sort Person by name\n8. Exit");
+                               "\n6. Count people by State\n7. Sort Person by name\n8. Sort Person by city, state and zip\n9. Exit");
             switch (scannerObject.nextInt()) {
                 case 1:
                     addContacts();
@@ -44,6 +44,11 @@ public class AddressBookLogic{
                     sortPersonByName();
                     break;
                 case 8:
+                    sortPersonByCity();
+                    sortPersonByState();
+                    sortPersonByZip();
+                    break;
+                case 9:
                     flag = false;
                     System.out.println("Thank You !");
             }
@@ -152,9 +157,31 @@ public class AddressBookLogic{
 
     //Method to sort person details as per name
     public void sortPersonByName(){
-        System.out.println("After sorting, the list of names are : \n");
+        System.out.println("After sorting by name, the list of persons are : \n");
         addressList.stream()
                 .sorted(Comparator.comparing(Contacts::getFirstName))
+                .forEach(System.out::println);
+    }
+
+    //Method to sort person details as per city
+    public void sortPersonByCity() {
+        System.out.println("\nAfter sorting by city, the list of persons are:");
+        addressList.stream()
+                .sorted(Comparator.comparing(Contacts::getCity))
+                .forEach(System.out::println);
+    }
+    //Method to sort person details as per state
+    public void sortPersonByState() {
+        System.out.println("\nAfter sorting by state, the list of persons are:");
+        addressList.stream()
+                .sorted(Comparator.comparing(Contacts::getState))
+                .forEach(System.out::println);
+    }
+    //Method to sort person details as per zip code
+    public void sortPersonByZip() {
+        System.out.println("\nAfter sorting by zip, the list of persons are:");
+        addressList.stream()
+                .sorted(Comparator.comparing(Contacts::getZip))
                 .forEach(System.out::println);
     }
 

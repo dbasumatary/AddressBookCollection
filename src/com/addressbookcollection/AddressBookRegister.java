@@ -79,7 +79,7 @@ public class AddressBookRegister{
         addBook.addContacts();
     }
 
-    //method to search person across address books
+    //method to search person across address books by city
     public void searchByCity(){
         System.out.print("Enter the name of city where the person resides: ");
         String inputCity= scannerObject.next();
@@ -88,6 +88,7 @@ public class AddressBookRegister{
                 .forEach(element -> System.out.println(element));
     }
 
+    //method to search person across address books by state
     public void searchByState(){
         System.out.print("Enter the name of state where the person resides: ");
         String inputState= scannerObject.next();
